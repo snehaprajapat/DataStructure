@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int arr[10]={10,23,41,49,56,70,88,91,97,103};
+    int Item;
+    int Iterator=0;
+    bool flag=false;
+
+    cout<<"Binary Search Program Started..."<<endl<<endl;
+
+    cout<<"Elements of Sorted array are: "<<endl;
+    for(int i=0; i<10; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl<<endl;
+    cout<<"Enter the element to search: ";
+    cin>>Item;
+
+    int m, l=0, h=9;
+    while(l<=h)
+    {
+        Iterator++;
+        cout<<"Iteration number "<<Iterator<<endl;
+        m=(l+h)/2;
+        if (Item==arr[m])
+        {
+            cout<<"Element found at "<<m+1<<" position."<<endl;
+            break;
+        }
+        else if(Item<arr[m])
+        {
+            h=m-1;
+        }
+        else if(Item>arr[m])
+        {
+            l=m+1;
+        }
+        else
+        {
+            cout<<endl<<"Element not found!"<<endl;
+            break;
+        }
+
+    }
+    cout<<endl;
+    cout<<"End of Program..."<<endl;
+    return 0;
+}
+
+
