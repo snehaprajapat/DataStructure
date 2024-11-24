@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int arr[12]={10,13,22,29,36,41,49,59,67,70,88,98};
+    int Item;
+    bool found=false;
+
+    cout<<"Ternary Searching Program..."<<endl<<endl;
+    cout<<"Elements of Sorted Array -"<<endl;
+    for(int i=0; i<12; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl<<endl;
+    cout<<"Enter Item to search: ";
+    cin>>Item;
+
+    int low=0, high=11;
+    while(low<=high)
+    {
+        int m1=low+(high-low)/3;
+        int m2=high-(high-low)/3;
+
+        if(Item==arr[m1])
+        {
+            cout<<endl<<"Element found at position "<<m1+1<<endl;
+            found=true;
+            break;
+        }
+
+        else if(Item==arr[m2])
+        {
+            cout<<endl<<"Element found at position "<<m2+1<<endl;
+            found=true;
+            break;
+        }
+
+        else if(Item<arr[m1])
+        {
+            high=m1-1;
+        }
+
+        else if(Item>arr[m2])
+        {
+            low=m2+1;
+        }
+
+        else
+        {
+            low=m1+1;
+            high=m2-1;
+        }
+    }
+    if(!found)
+    {
+        cout<<endl<<"Element not found!"<<endl;
+    }
+    return 0;
+}
