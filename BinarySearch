@@ -26,7 +26,8 @@ int main()
         m=(l+h)/2;
         if (Item==arr[m])
         {
-            cout<<"Element found at "<<m+1<<" position."<<endl;
+            cout<<endl<<"Element found at "<<m+1<<" position."<<endl;
+            flag=true;
             break;
         }
         else if(Item<arr[m])
@@ -42,11 +43,17 @@ int main()
             cout<<endl<<"Element not found!"<<endl;
             break;
         }
-
+    }
+    if(!flag)
+    {
+        cout<<endl<<"Element not found..."<<endl;
     }
     cout<<endl;
     cout<<"End of Program..."<<endl;
     return 0;
 }
+
+
+
 
 
