@@ -38,11 +38,6 @@ int main()
         {
             l=m+1;
         }
-        else
-        {
-            cout<<endl<<"Element not found!"<<endl;
-            break;
-        }
     }
     if(!flag)
     {
