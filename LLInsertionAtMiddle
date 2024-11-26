@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+};
+
+int main()
+{
+    int n, val;
+    Node *C, *H, *T;
+    H=NULL;
+    T=NULL;
+    cout<<"Insertion Program on Linked list..."<<endl<<endl;
+    cout<<"Enter number of nodes: ";
+    cin>>n;
+    for(int i=1; i<=n; i++)
+    {
+        cout<<"Enter value at "<<i<<" node: ";
+        cin>>val;
+        C=new Node();
+        C->data=val;
+        C->next=NULL;
+        if(H==NULL)
+        {
+            H=C;
+            T=C;
+        }
+        else
+        {
+            T->next=C;
+            T=C;
+        }
+    }
+    cout<<endl<<"Linked List -"<<endl;
+    T=H;
+    while(T!=NULL)
+    {
+        cout<<T->data<<" -> ";
+        T=T->next;
+    }
+    cout<<"NULL"<<endl<<endl;
+
+    int pos, Item;
+
+    cout<<"Enter position after which to add element: ";
+    cin>>pos;
+    cout<<endl<<"Enter Value to insert: ";
+    cin>>Item;
+
+    T=H;
+    for(int i=1; i<pos; i++)
+    {
+        T=T->next;
+    }
+    C=new Node();
+    C->data=Item;
+    C->next=T->next;
+    T->next=C;
+    cout<<endl<<"Linked List After Insertion -"<<endl;
+    T=H;
+    while(T!=NULL)
+    {
+        cout<<T->data<<" -> ";
+        T=T->next;
+    }
+    cout<<"NULL"<<endl<<endl;
+
+    return 0;
+}
