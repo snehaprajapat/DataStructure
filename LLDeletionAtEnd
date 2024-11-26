@@ -1,0 +1,78 @@
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+};
+
+int main()
+{
+    int n, val;
+    Node *H, *T, *C;
+    H=NULL;
+    T=NULL;
+
+    cout<<"Linked List Deletion at last Program Started..."<<endl<<endl;
+    cout<<"Enter total number of nodes: ";
+    cin>>n;
+    for(int i=1; i<=n; i++)
+    {
+        cout<<"Enter value "<<i<<" : ";
+        cin>>val;
+        C=new Node();
+
+        C->data=val;
+        C->next=NULL;
+
+        if(H==NULL)
+        {
+            H=C;
+            T=C;
+        }
+        else
+        {
+            T->next=C;
+            T=C;
+        }
+    }
+
+    cout<<"Linked list as follows: "<<endl;
+    T=H;
+    while(T!=NULL)
+    {
+        cout<<T->data<<"->";
+        T=T->next;
+    }
+    cout<<"NULL"<<endl;
+
+
+    if(H==NULL)
+    {
+        cout<<"Linked List is already Empty!"<<endl;
+    }
+    else
+    {
+        T=H;
+        while(T->next->next!=NULL)
+        {
+            T=T->next;
+        }
+        T->next=NULL;
+    }
+
+    cout<<"Linked list after deletion -"<<endl;
+    T=H;
+    while(T!=NULL)
+    {
+        cout<<T->data<<"->";
+        T=T->next;
+    }
+    cout<<"NULL"<<endl;
+
+    cout<<"Program end..."<<endl;
+
+    return 0;
+}
+
