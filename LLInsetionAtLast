@@ -1,0 +1,78 @@
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+};
+
+int main()
+{
+    int n, val;
+    Node *H, *T, *C;
+    H=NULL;
+    T=NULL;
+    cout<<"Insertion in Linked List at end... "<<endl;
+    cout<<"Enter number of nodes: ";
+    cin>>n;
+    for(int i=1; i<=n; i++)
+    {
+        cout<<"Enter value at "<<i<<" node: ";
+        cin>>val;
+        C=new Node();
+        C->data=val;
+        C->next=NULL;
+        if(H==NULL)
+        {
+            H=C;
+            T=C;
+        }
+        else
+        {
+            T->next=C;
+            T=C;
+        }
+    }
+
+    cout<<"Nodes of Linked list are -"<<endl<<endl;
+    T=H;
+    while(T!=NULL)
+    {
+        cout<<T->data<<"->";
+        T=T->next;
+    }
+    cout<<"NULL"<<endl;
+
+    int Item;
+    cout<<endl<<"Enter element to add in last of linked list: ";
+    cin>>Item;
+
+    C=new Node();
+    C->data=Item;
+    C->next=NULL;
+
+    if (H==NULL)
+    {
+        H=C;
+    }
+    else
+    {
+        T=H;
+        while(T->next!=NULL)
+        {
+            T=T->next;
+        }
+        T->next=C;
+    }
+
+    cout<<"Nodes of Linked list after insertion at last -"<<endl<<endl;
+    T=H;
+    while(T!=NULL)
+    {
+        cout<<T->data<<"->";
+        T=T->next;
+    }
+    cout<<"NULL"<<endl;
+    return 0;
+}
