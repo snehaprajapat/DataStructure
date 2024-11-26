@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+};
+
+int main()
+{
+    int n, val;
+    int Insert;
+
+    Node *H, *T, *C;
+    H=NULL;
+    T=NULL;
+
+    cout<<"Linked List Program Started..."<<endl;
+    cout<<"Enter total number of nodes: ";
+    cin>>n;
+    for(int i=1; i<=n; i++)
+    {
+        cout<<"Enter value "<<i<<" : ";
+        cin>>val;
+        C=new Node();
+        C->data=val;
+        C->next=NULL;
+
+        if(H==NULL)
+        {
+            H=C;
+            T=C;
+        }
+        else
+        {
+            T->next=C;
+            T=C;
+        }
+    }
+
+    cout<<"Enter a number to insert at beginning: ";
+    cin>>Insert;
+    C=new Node();
+    C->data=Insert;
+    C->next=H;
+    H=C;
+
+
+    cout<<"Linked list as follows after adding one element: "<<endl;
+    T=H;
+    while(T!=NULL)
+    {
+        cout<<T->data<<"->";
+        T=T->next;
+    }
+
+    cout<<"NULL"<<endl;
+    cout<<"Program end..."<<endl;
+
+    return 0;
+}
