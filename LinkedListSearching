@@ -1,0 +1,82 @@
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+};
+
+int main()
+{
+    int n, val;
+    Node *H, *T, *C;
+    H=NULL;
+    T=NULL;
+
+    cout<<"Linked List Searching Program Started..."<<endl;
+    cout<<"Enter total number of nodes: ";
+    cin>>n;
+    for(int i=1; i<=n; i++)
+    {
+        cout<<"Enter value "<<i<<" : ";
+        cin>>val;
+        C=new Node();
+        C->data=val;
+        C->next=NULL;
+
+        if(H==NULL)
+        {
+            H=C;
+            T=C;
+        }
+        else
+        {
+            T->next=C;
+            T=C;
+        }
+    }
+
+    cout<<"Linked list as follows: "<<endl;
+    T=H;
+    while(T!=NULL)
+    {
+        cout<<T->data<<"->";
+        T=T->next;
+    }
+    cout<<"NULL"<<endl;
+
+    int Item, pos=0;
+    bool found=false;
+    cout<<endl<<"Enter Item to search in linked list: ";
+    cin>>Item;
+
+    if (H==NULL)
+    {
+        cout<<"Linked List is empty!"<<endl;
+    }
+     else{
+
+        T=H;
+        while(T!=NULL)
+        {
+            pos++;
+            if(Item==T->data)
+            {
+                cout<<"Item found at "<<pos<<" position."<<endl;
+                found=true;
+                break;
+            }
+            T=T->next;
+        }
+    if(!found)
+    {
+        cout<<"Element not found..."<<endl;
+    }
+    }
+
+    cout<<"Program end..."<<endl;
+
+    return 0;
+}
+
