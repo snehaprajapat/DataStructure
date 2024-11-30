@@ -1,0 +1,101 @@
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+    Node *pre;
+};
+
+int main()
+{
+    int n, val;
+    Node *H, *T, *C;
+    H=NULL;
+    T=NULL;
+
+    cout<<"Doubly Linked List Program Started..."<<endl;
+    cout<<"Enter total number of nodes: ";
+    cin>>n;
+    for(int i=1; i<=n; i++)
+    {
+        cout<<"Enter value "<<i<<" : ";
+        cin>>val;
+        C=new Node();
+        C->data=val;
+        C->next=NULL;
+        C->pre=NULL;
+
+        if(H==NULL)
+        {
+            H=C;
+            T=C;
+        }
+        else
+        {
+            T->next=C;
+            C->pre=T;
+            T=C;
+        }
+    }
+
+    cout<<"Doubly Linked list as follows: "<<endl;
+    T=H;
+    while(T!=NULL)
+    {
+        cout<<T->data<<"<->";
+        T=T->next;
+    }
+    cout<<"NULL"<<endl;
+
+    int pos, value;
+    cout<<"Enter the position to enter new node: ";
+    cin>>pos;
+    cout<<endl;
+    cout<<"Enter value to add at "<<pos<<" node: ";
+    cin>>value;
+
+    C=new Node();
+    C->data=value;
+    C->next=NULL;
+    C->pre=NULL;
+
+    if(pos==1)
+    {
+        C->next=H;
+        if(H!=NULL)
+            H->pre=C;
+        H=C;
+    }
+    else
+    {
+        T=H;
+        for(int i=1; i<pos-1; i++)
+        {
+            T=T->next;
+        }
+
+        C->next=T->next;
+        if(T->next!=NULL)
+            C->next->pre=C;
+        T->next=C;
+        C->pre=T;
+    }
+
+
+    cout<<endl<<"Linked List After Insertion: "<<endl;
+    T=H;
+    while(T!=NULL)
+    {
+        cout<<T->data<<"<->";
+        T=T->next;
+    }
+    cout<<"NULL"<<endl;
+
+    cout<<"Program end..."<<endl;
+
+    return 0;
+}
+
+
