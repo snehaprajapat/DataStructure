@@ -1,0 +1,105 @@
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+    Node *pre;
+};
+
+int main()
+{
+    int n, val;
+    Node *H, *T, *C;
+    H=NULL;
+    T=NULL;
+
+    cout<<"Linked List Deletion at specific position Program Started..."<<endl<<endl;
+    cout<<"Enter total number of nodes: ";
+    cin>>n;
+    for(int i=1; i<=n; i++)
+    {
+        cout<<"Enter value "<<i<<" : ";
+        cin>>val;
+        C=new Node();
+
+        C->data=val;
+        C->next=NULL;
+        C->pre=NULL;
+
+        if(H==NULL)
+        {
+            H=C;
+            T=C;
+        }
+        else
+        {
+            T->next=C;
+            C->pre=T;
+            T=C;
+        }
+    }
+
+    cout<<"Doubly Linked list as follows: "<<endl;
+    T=H;
+    while(T!=NULL)
+    {
+        cout<<T->data<<"->";
+        T=T->next;
+    }
+    cout<<"NULL"<<endl;
+
+    if (H==NULL)
+    {
+        cout << "The linked list is already empty!" << endl;
+        return 0;
+    }
+    int pos;
+    cout<<"Enter a position to delete a node: ";
+    cin>>pos;
+
+
+    while(pos<=0 || pos>n)
+    {
+        cout<<"Position should be lie between 1-"<<n<<endl;
+        cout<<"Enter a position to delete a node: ";
+        cin>>pos;
+    }
+
+    if(pos==1)
+    {
+        T=H;
+        H=H->next;
+    }
+    else
+    {
+        T=H;
+        for(int i=1; i<pos-1; i++)
+        {
+           T=T->next;
+        }
+        Node *deletePtr=T->next;
+
+        if(deletePtr->next!=NULL)
+            deletePtr->next->pre=T;
+        else
+            T->next=NULL;
+        T->next=deletePtr->next;
+        delete deletePtr;
+    }
+
+
+    cout<<"Linked list after deletion -"<<endl;
+    T=H;
+    while(T!=NULL)
+        {
+            cout<<T->data<<"->";
+            T=T->next;
+        }
+    cout<<"NULL"<<endl;
+
+    cout<<"Program end..."<<endl;
+    return 0;
+}
+
