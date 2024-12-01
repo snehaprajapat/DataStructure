@@ -1,0 +1,101 @@
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+};
+
+int main()
+{
+    int n, val;
+    Node *H, *T, *C;
+    H=NULL;
+    T=NULL;
+
+    cout<<"Insertion in Circular Linked List Program Started..."<<endl;
+    cout<<"Enter total number of nodes: ";
+    cin>>n;
+    for(int i=1; i<=n; i++)
+    {
+        cout<<"Enter value "<<i<<" : ";
+        cin>>val;
+        C=new Node();
+        C->data=val;
+        C->next=NULL;
+
+        if(H==NULL)
+        {
+            H=C;
+            T=C;
+        }
+        else
+        {
+            T->next=C;
+            T=C;
+        }
+    }
+    T->next=H;
+
+    cout<<"Circular Linked list as follows: "<<endl;
+    T=H;
+    do
+    {
+        cout<<T->data<<"->";
+        T=T->next;
+    }
+    while(T!=H);
+
+    cout<<"NULL"<<endl;
+    int value, pos;
+    cout<<"Enter position to insert element: ";
+    cin>>pos;
+    cout<<endl<<"Enter value at "<<pos<<" position: ";
+    cin>>value;
+
+    C=new Node();
+    C->data=value;
+    C->next=NULL;
+    if(pos==1)
+    {
+        C->next=H;
+        if(H!=NULL)
+        {
+            T=H;
+            while(T->next!=H)
+                T=T->next;
+            T->next=C;
+        }
+        else
+        {
+            C->next=C;
+        }
+        H=C;
+    }
+    else
+    {
+        T=H;
+        for(int i=1; i<pos-1; i++)
+        {
+            T=T->next;
+        }
+        C->next=T->next;
+        T->next=C;
+    }
+
+    cout<<"Circular Linked list After Insertion are as follows: "<<endl;
+    T=H;
+    do
+    {
+        cout<<T->data<<"->";
+        T=T->next;
+    }
+    while(T!=H);
+
+    cout<<"NULL"<<endl;
+    cout<<"Program end..."<<endl;
+
+    return 0;
+}
+
