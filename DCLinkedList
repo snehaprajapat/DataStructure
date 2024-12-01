@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+    Node *prev;
+};
+
+int main()
+{
+    int n, val;
+    Node *H = NULL, *T = NULL, *C;
+
+    cout << "Forward and Backward Traversal in Doubly Circular Linked List Program Started..." << endl;
+    cout << "Enter total number of nodes: ";
+    cin >> n;
+
+    // Create the doubly circular linked list
+    for (int i = 1; i <= n; i++)
+    {
+        cout << "Enter value " << i << " : ";
+        cin >> val;
+        C = new Node();
+        C->data = val;
+        C->next = C->prev = NULL;
+
+        if (H == NULL)
+        {
+            H = T = C;
+            H->next = H->prev = H; // Circular connection
+        }
+        else
+        {
+            C->next = H;
+            C->prev = T;
+            T->next = C;
+            H->prev = C;
+            T = C;
+        }
+    }
+
+    // Display the doubly circular linked list in forward direction
+    cout << "Forward Traversal of Doubly Circular Linked List: " << endl;
+    if (H != NULL)
+    {
+        T = H;
+        do
+        {
+            cout << T->data << " <-> ";
+            T = T->next;
+        } while (T != H);
+        cout << "(back to head)" << endl;
+    }
+    else
+    {
+        cout << "The list is empty." << endl;
+    }
+
+    // Display the doubly circular linked list in backward direction
+    cout << "Backward Traversal of Doubly Circular Linked List: " << endl;
+    if (H != NULL)
+    {
+        T = H->prev; // Start from the last node
+        do
+        {
+            cout << T->data << " <-> ";
+            T = T->prev;
+        } while (T != H->prev);
+        cout << "(back to tail)" << endl;
+    }
+    else
+    {
+        cout << "The list is empty." << endl;
+    }
+
+    cout << "Program end..." << endl;
+    return 0;
+}
