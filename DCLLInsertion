@@ -1,0 +1,107 @@
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+    Node *prev;
+};
+
+int main()
+{
+    int n, val;
+    Node *H = NULL, *T = NULL, *C;
+
+    cout << "Insertion in Doubly Circular Linked List Program Started..." << endl;
+    cout << "Enter total number of nodes: ";
+    cin >> n;
+
+    for (int i = 1; i <= n; i++)
+    {
+        cout << "Enter value " << i << " : ";
+        cin >> val;
+        C = new Node();
+        C->data = val;
+        C->next = C->prev = NULL;
+
+        if (H == NULL)
+        {
+            H = T = C;
+            H->next = H->prev = H;
+        }
+        else
+        {
+            C->next = H;
+            C->prev = T;
+            T->next = C;
+            H->prev = C;
+            T = C;
+        }
+    }
+
+    // Display the doubly circular linked list
+    cout << "Doubly Circular Linked List as follows: " << endl;
+    if (H != NULL)
+    {
+        T = H;
+        do
+        {
+            cout << T->data << "<->";
+            T = T->next;
+        } while (T != H);
+        cout << "(back to head)" << endl;
+    }
+    else
+    {
+        cout << "The list is currently empty." << endl;
+    }
+
+    // Insertion logic
+    int pos, value;
+    cout << "Enter position to insert element: ";
+    cin >> pos;
+    cout << "Enter value to insert: ";
+    cin >> value;
+
+    C = new Node();
+    C->data = value;
+
+    if (pos == 1)
+    {
+        C->next = H;
+        C->prev = H->prev;
+        H->prev->next = C;
+        H->prev = C;
+        H = C;
+    }
+    else
+    {
+        T = H;
+        for (int i = 1; i < pos - 1; i++)
+        {
+            T = T->next;
+            if (T == H)
+            {
+                cout << "Invalid position!" << endl;
+                return 1;
+            }
+        }
+        C->next = T->next;
+        C->prev = T;
+        T->next->prev = C;
+        T->next = C;
+    }
+
+    // Display the list after insertion
+    cout << "Doubly Circular Linked List After Insertion: " << endl;
+    T = H;
+    do
+    {
+        cout << T->data << "<->";
+        T = T->next;
+    } while (T != H);
+    cout << "(back to head)" << endl;
+
+    return 0;
+}
