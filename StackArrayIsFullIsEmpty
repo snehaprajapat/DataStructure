@@ -1,0 +1,139 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+#define MAX_SIZE 6
+
+int main()
+{
+    int n, value;
+    cout<<"Stack Operation Through Array..."<<endl<<endl;
+    cout<<"Enter size of Stack: ";
+    cin>>n;
+    int STAC[MAX_SIZE];
+    int top=-1;
+
+    for(int i=0; i<n; i++)
+    {
+        if (top==MAX_SIZE-1)
+        {
+            cout<<endl<<"Over-flow..."<<endl;
+            break;
+
+        }
+        else
+        {
+            top+=1;
+            cout<<"Enter value "<<top+1<<": ";
+            cin>>value;
+            STAC[top]=value;
+        }
+    }
+    cout<<"Elements of Stack: "<<endl;
+    if (top==-1)
+        cout<<"Stack is empty..."<<endl;
+    else
+    {
+        for(int i=0; i<=top; i++)
+        cout<<STAC[i]<<" ";
+    cout<<endl;
+    }
+
+    string push;
+    cout<<"Do you want to push element in Stack: ";
+    cin>>push;
+    if (push=="yes" || push=="Yes")
+    {
+        if (top==MAX_SIZE-1)
+        {
+            cout<<endl<<"Can't Push Stack Overflow..."<<endl;
+        }
+        else
+        {
+            cout<<"Enter element to push: ";
+            cin>>value;
+            top++;
+            STAC[top]=value;
+            n++;
+            cout<<"Elements of Stack after pushing: "<<endl;
+            for(int i=0; i<=top; i++)
+                cout<<STAC[i]<<" ";
+            cout<<endl;
+        }
+
+    }
+
+    string pop;
+    cout<<"Do you want to pop element from Stack: ";
+    cin>>pop;
+    while (pop=="yes" || pop=="Yes")
+        {
+            if (top==-1)
+            {
+                cout<<endl<<"Can't Pop Stack Underflow..."<<endl;
+            }
+
+            else
+            {
+                cout<<endl<<"Popped element : "<<STAC[top]<<endl;
+                top--;
+
+                cout << "Elements of Stack after popping: " << endl;
+                if (top==-1)
+                    {
+                        cout<<"Stack is empty..."<<endl;
+                        break;
+                    }
+                else{
+                    for(int i=0; i<=top; i++)
+                    {
+                        cout<<STAC[i]<<" ";
+                    }
+                    cout<<endl;
+                }
+            }
+                    cout<<"Do you want to pop element from Stack: ";
+            cin>>pop;
+
+        }
+    string peek;
+    cout<<"Do you want to know top element of Stack: ";
+    cin>>peek;
+
+    if (peek=="yes" || peek=="Yes")
+    {
+        if (top==-1)
+            cout<<"Stack is empty"<<endl;
+        else
+        {
+            cout<<"Top element is : "<<STAC[top]<<endl;
+        }
+    }
+
+    string IsEmpty;
+    cout<<"Do you want to know Stack is empty or not: ";
+    cin>>IsEmpty;
+    if (IsEmpty=="yes" || IsEmpty=="Yes")
+    {
+        if(top==-1)
+            cout<<"Stack is Empty..."<<endl;
+        else
+            cout<<"Stack is not Empty..."<<endl;
+    }
+
+    string IsFull;
+    cout<<"Do you want to know Stack is full or not: ";
+    cin>>IsFull;
+    if (IsFull=="yes" || IsFull=="Yes")
+    {
+        if(top==MAX_SIZE-1)
+            cout<<"Stack is Full..."<<endl;
+        else
+            cout<<"Stack is not Full..."<<endl;
+    }
+
+
+
+    return 0;
+
+}
