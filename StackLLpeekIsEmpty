@@ -1,0 +1,98 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+};
+
+int main()
+{
+    int n, push;
+    Node *T, *C, *H=NULL;
+    cout<<"Stack Implementation Through Linked list: "<<endl<<endl;
+    cout<<"Enter total number of element to push: ";
+    cin>>n;
+    for(int i=1; i<=n; i++)
+    {
+        cout<<"Enter values to push: ";
+        cin>>push;
+
+        C=new Node();
+        C->data=push;
+        C->next=H;
+        H=C;
+    }
+
+    cout<<"Stack elements After pushing: "<<endl;
+    T=H;
+    while(T!=NULL)
+    {
+        cout<<T->data<<"->";
+        T=T->next;
+    }
+    cout<<"NULL"<<endl;
+
+    string pop;
+    cout<<"Do you want to pop: ";
+    cin>>pop;
+    bool popped=false;
+    while (pop=="yes" || pop=="Yes")
+    {
+        if(H==NULL)
+        {
+            cout<<"Stack is Under-flow..."<<endl;
+            break;
+        }
+        else
+        {
+            cout<<"Popped element: "<<H->data<<endl;
+            H=H->next;
+            popped=true;
+        }
+        cout<<"Do you want to pop: ";
+        cin>>pop;
+    }
+    if(popped)
+    {
+        cout<<"Stack elements After poping: "<<endl;
+        T=H;
+        while(T!=NULL)
+        {
+            cout<<T->data<<"->";
+            T=T->next;
+        }
+        cout<<"NULL"<<endl;
+    }
+
+    string peek;
+    cout<<"Do you want to know top element: ";
+    cin>>peek;
+    if(peek=="yes" || peek=="Yes")
+    {
+        if(H==NULL)
+            cout<<"Stack Under-flow...";
+        else
+        {
+            cout<<"Element at top : "<<H->data;
+        }
+        cout<<endl;
+    }
+
+    string IsEmpty;
+    cout<<"Do you want to know Stack is empty or not: ";
+    cin>>IsEmpty;
+    if(IsEmpty=="yes" || IsEmpty=="Yes")
+    {
+        if(H==NULL)
+            cout<<"Stack is Empty..."<<endl;
+        else
+        {
+            cout<<"Stack is not Empty"<<endl;
+        }
+    }
+
+    return 0;
+}
